@@ -1,0 +1,61 @@
+{
+    "name": "ethan",
+    "memory": "",
+    "turns": [
+        {
+            "role": "system",
+            "content": "Say hello world and your name"
+        },
+        {
+            "role": "assistant",
+            "content": "Hey world! I'm ethan. What's up?"
+        },
+        {
+            "role": "user",
+            "content": "WhosMaCreeper: Nathan, where are you?"
+        },
+        {
+            "role": "assistant",
+            "content": "Yo, I'm around x: -37.50, y: 76.00, z: -45.50 in a spruce taiga. Need anything?"
+        },
+        {
+            "role": "user",
+            "content": "WhosMaCreeper: Can you find me?"
+        },
+        {
+            "role": "assistant",
+            "content": "On my way! !goToPlayer('WhosMaCreeper', 3)"
+        },
+        {
+            "role": "user",
+            "content": "WhosMaCreeper: Nice."
+        },
+        {
+            "role": "assistant",
+            "content": "Here! What’s next?"
+        },
+        {
+            "role": "user",
+            "content": "WhosMaCreeper: Okay. Can you just start cutting trees?"
+        },
+        {
+            "role": "assistant",
+            "content": "Sure thing! I'll start chopping away. !collectAllBlocks('log')"
+        }
+    ],
+    "npc": {
+        "do_routine": false,
+        "do_set_goal": false
+    },
+    "modes": {
+        "self_preservation": true,
+        "cowardice": true,
+        "self_defense": true,
+        "hunting": true,
+        "item_collecting": true,
+        "torch_placing": true,
+        "idle_staring": true,
+        "cheat": false
+    },
+    "memory_bank": {}
+}

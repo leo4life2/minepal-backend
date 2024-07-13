@@ -4,12 +4,19 @@ import { server as WebSocketServer } from 'websocket';
 import { setupDeepgram } from './deepgram';
 import { ListenLiveClient } from '@deepgram/sdk';
 import openaiRoutes from './routes/openai';
+import fs from 'fs';
+import path from 'path';
 
-const fastify = Fastify();
+const fastify = Fastify({
+    https: {
+        key: fs.readFileSync(path.join('/etc/letsencrypt/live/backend.minepal.net', 'privkey.pem')),
+        cert: fs.readFileSync(path.join('/etc/letsencrypt/live/backend.minepal.net', 'fullchain.pem'))
+    }
+});
 const port = 11111;
 
 fastify.register(fastifyCors, {
-    origin: ['http://localhost', 'http://localhost:5173', 'http://localhost:4173'],
+    origin: '*',
     credentials: true
 });
 

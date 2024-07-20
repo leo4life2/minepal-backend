@@ -9,7 +9,8 @@ export const setupDeepgram = (ws: WebSocketConnection) => {
         language: "en",
         punctuate: true,
         smart_format: true,
-        model: "nova",
+        model: "nova-2",
+        endpointing: 50,
     });
 
     if (keepAlive) clearInterval(keepAlive);
@@ -21,8 +22,12 @@ export const setupDeepgram = (ws: WebSocketConnection) => {
         console.log("deepgram: connected");
 
         deepgram.addListener(LiveTranscriptionEvents.Transcript, (data) => {
-            const transcript = data.channel.alternatives[0].transcript;
-            ws.sendUTF(transcript); // Change send method
+            const jsonData = {
+                is_final: data.is_final,
+                speech_final: data.speech_final,
+                transcript: data.channel.alternatives[0].transcript
+            };
+            ws.sendUTF(JSON.stringify(jsonData));
         });
 
         deepgram.addListener(LiveTranscriptionEvents.Close, async () => {

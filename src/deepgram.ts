@@ -10,7 +10,7 @@ export const setupDeepgram = (ws: WebSocketConnection) => {
         punctuate: true,
         smart_format: true,
         model: "nova-2",
-        endpointing: 50,
+        endpointing: 20,
     });
 
     if (keepAlive) clearInterval(keepAlive);

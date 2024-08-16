@@ -4,9 +4,10 @@ import { client as WebSocketClient, connection as WebSocketConnection } from 'we
 const deepgramClient = createClient(process.env.DEEPGRAM_API_KEY);
 let keepAlive: NodeJS.Timeout | undefined;
 
-export const setupDeepgram = (ws: WebSocketConnection) => {
+export const setupDeepgram = (ws: WebSocketConnection, language: string = 'en') => {
+    console.log("lang is ", language);
     const deepgram = deepgramClient.listen.live({
-        language: "en",
+        language: language || 'en',  // Use the provided language or default to 'en'
         punctuate: true,
         smart_format: true,
         model: "nova-2",

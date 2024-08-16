@@ -43,7 +43,12 @@ const startServer = async () => {
         wsServer.on('request', (request) => {
             const connection = request.accept(null, request.origin);
             console.log('socket: client connected');
-            let deepgram: ListenLiveClient | null = setupDeepgram(connection);
+
+            const queryString = new URLSearchParams(request.resourceURL.query as Record<string, string>).toString();
+            const urlParams = new URLSearchParams(queryString);
+            const language = urlParams.get('language') || 'en';
+
+            let deepgram: ListenLiveClient | null = setupDeepgram(connection, language);
 
             connection.on('message', (message) => {
                 if (deepgram && message.type === 'binary' && deepgram.getReadyState() === 1) {
